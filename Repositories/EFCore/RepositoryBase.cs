@@ -32,7 +32,7 @@ namespace Repositories.EFCore
 
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges) => 
             !trackChanges ?
-            _context.Set<T>().Where(expression) :
+            _context.Set<T>().Where(expression).AsNoTracking() :
             _context.Set<T>().Where(expression);
 
         public void Update(T entity) => _context.Set<T>().Update(entity);
