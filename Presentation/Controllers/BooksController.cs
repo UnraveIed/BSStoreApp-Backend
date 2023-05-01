@@ -69,6 +69,9 @@ namespace Presentation.Controllers
             if (bookDto is null)
                 return BadRequest(); // 400
 
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState); 
+
             _manager.BookService.UpdateOneBook(id, bookDto, false);
 
             return NoContent(); // 204
@@ -86,24 +89,24 @@ namespace Presentation.Controllers
         }
 
 
-        // Duzeltilmeli
+        
         [HttpPatch("{id:int}")]
         public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int id,
-            [FromBody] JsonPatchDocument<BookDto> bookPatch)
+            [FromBody] JsonPatchDocument<BookDtoForUpdate> bookPatch)
         {
+            if(bookPatch is null)
+                return BadRequest(); // 400
 
-            var bookDto = _manager
-                .BookService
-                .GetOneBookById(id, false);
+            var result = _manager.BookService.GetOneBookForPatch(id, false);
 
-            bookPatch.ApplyTo(bookDto);
+            bookPatch.ApplyTo(result.bookDtoForUpdate, ModelState);
 
-            _manager.BookService.UpdateOneBook(id, new BookDtoForUpdate
-            {
-                Id = bookDto.Id,
-                Title = bookDto.Title,
-                Price = bookDto.Price,
-            }, true);
+            TryValidateModel(result.bookDtoForUpdate);
+
+            if(!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);
+
+            _manager.BookService.SaveChangesForPatch(result.bookDtoForUpdate, result.book);
 
             return NoContent(); // 204
         }
