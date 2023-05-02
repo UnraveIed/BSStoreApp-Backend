@@ -35,10 +35,8 @@ namespace Services
 
         public async Task DeleteOneBookAsync(int id, bool trackChanges)
         {
-            var entity = await _manager.Book.GetBookByIdAsync(id, trackChanges);
-            if (entity is null)
-                throw new BookNotFoundException(id);
-
+            
+            var entity = await GetOneBookByIdAndCheckExist(id, trackChanges);
 
             _manager.Book.Delete(entity);
             await _manager.SaveAsync();
@@ -52,20 +50,14 @@ namespace Services
 
         public async Task<BookDto> GetOneBookByIdAsync(int id, bool trackChanges)
         {
-            var book = await _manager.Book.GetBookByIdAsync(id, trackChanges);
-            if (book is null)
-                throw new BookNotFoundException(id);
+            var book = await GetOneBookByIdAndCheckExist(id, trackChanges);
 
-            
             return _mapper.Map<BookDto>(book);
         }
 
         public async Task<(BookDtoForUpdate bookDtoForUpdate, Book book)> GetOneBookForPatchAsync(int id, bool trackChanges)
         {
-            var book = await _manager.Book.GetBookByIdAsync(id, trackChanges);
-
-            if(book is null)
-                throw new BookNotFoundException(id);
+            var book = await GetOneBookByIdAndCheckExist(id, trackChanges);
 
             var bookDtoForUpdate = _mapper.Map<BookDtoForUpdate>(book);
 
@@ -80,9 +72,7 @@ namespace Services
 
         public async Task UpdateOneBookAsync(int id, BookDtoForUpdate bookDto, bool trackChanges)
         {
-            var entity = await _manager.Book.GetBookByIdAsync(id, trackChanges);
-            if (entity is null)
-                throw new BookNotFoundException(id);
+            var entity = await GetOneBookByIdAndCheckExist(id, trackChanges);
 
             //entity.Title = book.Title;
             //entity.Price = book.Price;
@@ -93,6 +83,15 @@ namespace Services
             _manager.Book.Update(entity);
 
             await _manager.SaveAsync();
+        }
+
+        private async Task<Book> GetOneBookByIdAndCheckExist(int id, bool trackChanges)
+        {
+            var entity = await _manager.Book.GetBookByIdAsync(id, trackChanges);
+            if (entity is null)
+                throw new BookNotFoundException(id);
+
+            return entity;
         }
     }
 }
