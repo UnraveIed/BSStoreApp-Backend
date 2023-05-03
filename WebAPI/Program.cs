@@ -42,6 +42,8 @@ builder.Services.ConfigureLoggerService();
 builder.Services.AddAutoMapper(typeof(Program));
 //ValidationFilters
 builder.Services.ConfigureActionFilters();
+//Cors options
+builder.Services.ConfigureCors();
 
 var app = builder.Build();
 
@@ -61,6 +63,9 @@ if (app.Environment.IsProduction())
 }
 
 app.UseHttpsRedirection();
+
+//ConfigureCors icerisinde CorsPolicy tanimlandi. Oradaki ozellikleri kullanmasini soylemis olduk.
+app.UseCors("CorsPolicy");
 
 app.UseAuthorization();
 
