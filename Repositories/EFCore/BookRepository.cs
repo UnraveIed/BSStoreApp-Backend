@@ -13,9 +13,10 @@ namespace Repositories.EFCore
 {
     public sealed class BookRepository : RepositoryBase<Book>, IBookRepository
     {
+        private RepositoryContext _context;
         public BookRepository(RepositoryContext context) : base(context)
         {
-
+            _context = context;
         }
 
         public void CreateOneBook(Book book) => Create(book);
@@ -28,6 +29,17 @@ namespace Repositories.EFCore
                 .Search(bookParameters.SearchTerm)
                 .Sort(bookParameters.OrderBy)
                 .ToListAsync();
+
+            //var books = await (trackChanges ? _context.Set<Book>()
+            //    .FilterBooks(bookParameters.MinPrice, bookParameters.MaxPrice)
+            //    .Search(bookParameters.SearchTerm)
+            //    .Sort(bookParameters.OrderBy)
+            //    .ToListAsync() :
+            //    _context.Set<Book>()
+            //    .AsNoTracking()
+            //    .FilterBooks(bookParameters.MinPrice, bookParameters.MaxPrice)
+            //    .Search(bookParameters.SearchTerm)
+            //    .Sort(bookParameters.OrderBy).ToListAsync());
 
             return PagedList<Book>
                 .ToPagedList(books, bookParameters.PageNumber, bookParameters.PageSize);
