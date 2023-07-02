@@ -11,6 +11,7 @@ namespace Entities.RequestFeatures
 		const int maxPageSize = 50;
 
         public string? OrderBy { get; set; }
+        public string? Fields { get; set; }
 
         //Auto - implemented property
         public int PageNumber { get; set; }

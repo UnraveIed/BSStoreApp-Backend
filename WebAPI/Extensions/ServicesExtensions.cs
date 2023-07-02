@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Entities.DTOs;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Bson;
 using Presentation.ActionFilters;
 using Repositories.Contracts;
@@ -41,6 +42,11 @@ namespace WebAPI.Extensions
                     builder.WithExposedHeaders("X-Pagination");
                 });
             });
+        }
+
+        public static void ConfigureDataShaper(this IServiceCollection services)
+        {
+            services.AddScoped<IDataShaper<BookDto>, DataShaper<BookDto>>();
         }
     }
 }
