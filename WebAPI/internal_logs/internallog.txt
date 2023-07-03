@@ -227,3 +227,30 @@
 2023-07-02 20:01:29.5145 Info Message Template Auto Format enabled
 2023-07-02 20:01:29.6037 Info Registered target NLog.Targets.FileTarget(Name=logfile)
 2023-07-02 20:01:29.6329 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\Source\Repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-03 15:35:22.2802 Info Message Template Auto Format enabled
+2023-07-03 15:35:22.4156 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-03 15:35:22.4441 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-03 15:37:24.9480 Info Message Template Auto Format enabled
+2023-07-03 15:37:25.0508 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-03 15:37:25.0870 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-03 15:39:03.4563 Info Message Template Auto Format enabled
+2023-07-03 15:39:03.5720 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-03 15:39:03.6164 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-03 15:45:29.1153 Info Message Template Auto Format enabled
+2023-07-03 15:45:29.2433 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-03 15:45:29.2771 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-03 15:48:00.0655 Info Message Template Auto Format enabled
+2023-07-03 15:48:00.1726 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-03 15:48:00.1991 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-03 15:58:15.2647 Info Message Template Auto Format enabled
+2023-07-03 15:58:15.3947 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-03 15:58:15.4330 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-03 16:00:54.4421 Info Message Template Auto Format enabled
+2023-07-03 16:00:54.5268 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-03 16:00:54.5537 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-03 16:12:39.3307 Info Message Template Auto Format enabled
+2023-07-03 16:12:39.4573 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-03 16:12:39.4867 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-03 16:22:10.7262 Info Message Template Auto Format enabled
+2023-07-03 16:22:10.8624 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-03 16:22:10.9224 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
