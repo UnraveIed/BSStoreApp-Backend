@@ -65,6 +65,10 @@ namespace WebAPI.Extensions
                     systemTextJsonOutputFormatter
                     .SupportedMediaTypes
                     .Add("application/vnd.unravel.hateoas+json");
+
+                    systemTextJsonOutputFormatter
+                    .SupportedMediaTypes
+                    .Add("application/vnd.unravel.apiroot+json");
                 }
 
                 var xmlOutputFormatter = config
@@ -76,6 +80,10 @@ namespace WebAPI.Extensions
                     xmlOutputFormatter
                     .SupportedMediaTypes
                     .Add("application/vnd.unravel.hateoas+xml");
+
+                    xmlOutputFormatter
+                    .SupportedMediaTypes
+                    .Add("application/vnd.unravel.apiroot+xml");
                 }
             });
         }
