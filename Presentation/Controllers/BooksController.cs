@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
+    //[ApiVersion("1.0")]
     [ApiController]
     [Route("api/books")]
     [ServiceFilter(typeof(LogFilterAttribute))]
