@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLog;
@@ -17,6 +18,7 @@ builder.Services.AddControllers(config =>
 {
     config.RespectBrowserAcceptHeader = true;
     config.ReturnHttpNotAcceptable = true;
+    config.CacheProfiles.Add("5mins",new CacheProfile() { Duration = 300});
 })
     //Xml formatinda response saglandi
     .AddXmlDataContractSerializerFormatters()
@@ -51,6 +53,13 @@ builder.Services.AddCustomMediaTypes();
 builder.Services.AddScoped<IBookLinks, BookLinks>();
 // Api Versioning
 builder.Services.ConfigureVersioning();
+// Caching
+builder.Services.ConfigureResponseCaching();
+builder.Services.ConfigureHttpCacheHeaders();
+// Rate Limiting
+builder.Services.AddMemoryCache();
+builder.Services.ConfigureRateLimitingOptions();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -71,8 +80,13 @@ if (app.Environment.IsProduction())
 
 app.UseHttpsRedirection();
 
+//Corsdan once rate limiting
+app.UseIpRateLimiting();
 //ConfigureCors icerisinde CorsPolicy tanimlandi. Oradaki ozellikleri kullanmasini soylemis olduk.
 app.UseCors("CorsPolicy");
+// Caching Corsdan sonra yazilmasi oneriliyor
+app.UseResponseCaching();
+app.UseHttpCacheHeaders();
 
 app.UseAuthorization();
 

@@ -284,3 +284,40 @@
 2023-07-05 14:11:57.8275 Info Message Template Auto Format enabled
 2023-07-05 14:11:57.9578 Info Registered target NLog.Targets.FileTarget(Name=logfile)
 2023-07-05 14:11:57.9863 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-07 15:07:13.7158 Info Message Template Auto Format enabled
+2023-07-07 15:07:13.8183 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-07 15:07:13.8476 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-07 15:09:07.0443 Info Message Template Auto Format enabled
+2023-07-07 15:09:07.1758 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-07 15:09:07.2088 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-07 15:13:31.9780 Info Message Template Auto Format enabled
+2023-07-07 15:13:32.1101 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-07 15:13:32.1383 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-07 15:18:31.6070 Info Message Template Auto Format enabled
+2023-07-07 15:18:31.7319 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-07 15:18:31.7742 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-07 15:27:10.7802 Info Message Template Auto Format enabled
+2023-07-07 15:27:10.9015 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-07 15:27:10.9293 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-07 15:28:33.1863 Info Message Template Auto Format enabled
+2023-07-07 15:28:33.2767 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-07 15:28:33.3012 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-07 15:29:39.7232 Info Message Template Auto Format enabled
+2023-07-07 15:29:39.8440 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-07 15:29:39.8807 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-07 15:31:24.0871 Info Message Template Auto Format enabled
+2023-07-07 15:31:24.2074 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-07 15:31:24.2362 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-07 15:34:48.4888 Info Message Template Auto Format enabled
+2023-07-07 15:34:48.6057 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-07 15:34:48.6347 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-07 15:36:13.7984 Info Message Template Auto Format enabled
+2023-07-07 15:36:13.9699 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-07 15:36:14.0023 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-07 15:43:36.2073 Info AppDomain Shutting down. LogFactory closing...
+2023-07-07 15:43:36.2346 Info LogFactory has been closed.
+2023-07-08 21:37:04.7352 Info Message Template Auto Format enabled
+2023-07-08 21:37:04.8384 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-08 21:37:04.8853 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-07-08 21:38:15.1742 Info AppDomain Shutting down. LogFactory closing...
+2023-07-08 21:38:15.2045 Info LogFactory has been closed.
