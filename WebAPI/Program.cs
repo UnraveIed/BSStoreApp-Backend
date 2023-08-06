@@ -60,6 +60,9 @@ builder.Services.ConfigureHttpCacheHeaders();
 builder.Services.AddMemoryCache();
 builder.Services.ConfigureRateLimitingOptions();
 builder.Services.AddHttpContextAccessor();
+// Auth
+builder.Services.AddAuthentication();
+builder.Services.ConfigureIdentity();
 
 var app = builder.Build();
 
@@ -87,6 +90,8 @@ app.UseCors("CorsPolicy");
 // Caching Corsdan sonra yazilmasi oneriliyor
 app.UseResponseCaching();
 app.UseHttpCacheHeaders();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
