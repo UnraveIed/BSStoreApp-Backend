@@ -62,8 +62,8 @@ builder.Services.ConfigureRateLimitingOptions();
 builder.Services.AddHttpContextAccessor();
 // Auth
 //builder.Services.AddAuthentication();
-builder.Services.ConfigureJWT(builder.Configuration);
 builder.Services.ConfigureIdentity();
+builder.Services.ConfigureJWT(builder.Configuration);
 
 var app = builder.Build();
 
