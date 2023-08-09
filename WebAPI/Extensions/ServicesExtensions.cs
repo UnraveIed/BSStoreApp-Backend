@@ -1,11 +1,13 @@
 ﻿using AspNetCoreRateLimit;
 using Entities.DTOs;
 using Entities.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Bson;
 using Presentation.ActionFilters;
 using Presentation.Controllers;
@@ -13,6 +15,7 @@ using Repositories.Contracts;
 using Repositories.EFCore;
 using Services;
 using Services.Contracts;
+using System.Text;
 
 namespace WebAPI.Extensions
 {
@@ -169,6 +172,37 @@ namespace WebAPI.Extensions
             })
                 .AddEntityFrameworkStores<RepositoryContext>()
                 .AddDefaultTokenProviders();
+        }
+
+
+        public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration)
+        {
+            var jwtSettings = configuration.GetSection("JwtSettings");
+            var secretKey = jwtSettings["secretKey"];
+
+            services.AddAuthentication(opt=>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(opt=>
+            {
+                opt.TokenValidationParameters = new TokenValidationParameters 
+                {
+                    // Yayinciyi dogrula
+                    ValidateIssuer = true,
+                    // Istek atani dogrula
+                    ValidateAudience = true,
+                    // Expire dogrula
+                    ValidateLifetime = true,
+                    // Super key dogrula
+                    ValidateIssuerSigningKey = true,
+                    // Resmi yayinci bilgisi belirlendi
+                    ValidIssuer = jwtSettings["validIssuer"],
+                    // Resmi izleyici bilgisi belirlendi
+                    ValidAudience = jwtSettings["validAudience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+                };
+            });
         }
 
     }
