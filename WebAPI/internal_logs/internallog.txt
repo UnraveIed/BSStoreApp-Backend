@@ -374,3 +374,24 @@
 2023-08-13 17:33:29.2234 Info Message Template Auto Format enabled
 2023-08-13 17:33:29.3452 Info Registered target NLog.Targets.FileTarget(Name=logfile)
 2023-08-13 17:33:29.3740 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-08-13 17:54:20.8591 Info Message Template Auto Format enabled
+2023-08-13 17:54:20.9028 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-08-13 17:54:20.9220 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-08-13 17:54:21.9950 Info AppDomain Shutting down. LogFactory closing...
+2023-08-13 17:54:21.9950 Info LogFactory has been closed.
+2023-08-13 17:54:39.7289 Info Message Template Auto Format enabled
+2023-08-13 17:54:39.7742 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-08-13 17:54:39.7916 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-08-13 17:54:40.9202 Info AppDomain Shutting down. LogFactory closing...
+2023-08-13 17:54:40.9294 Info LogFactory has been closed.
+2023-08-13 19:59:11.4649 Info Message Template Auto Format enabled
+2023-08-13 19:59:11.5646 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-08-13 19:59:11.5901 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-08-13 20:17:17.6813 Info Message Template Auto Format enabled
+2023-08-13 20:17:17.7814 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-08-13 20:17:17.8107 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-08-13 20:22:43.2109 Info Message Template Auto Format enabled
+2023-08-13 20:22:43.3184 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-08-13 20:22:43.3496 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\np_ba\source\repos\BSStoreApp-Backend\WebAPI\nlog.config
+2023-08-13 20:28:20.0710 Info AppDomain Shutting down. LogFactory closing...
+2023-08-13 20:28:20.0965 Info LogFactory has been closed.
