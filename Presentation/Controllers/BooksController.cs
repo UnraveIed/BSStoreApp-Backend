@@ -32,7 +32,7 @@ namespace Presentation.Controllers
             _manager = manager;
         }
 
-        [Authorize]
+        [Authorize(Roles = "User, Editor, Admin")]
         [HttpHead]
         [HttpGet(Name = "GetAllBooksAsync")]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
@@ -53,6 +53,7 @@ namespace Presentation.Controllers
                 Ok(result.linkResponse.ShapedEntities);
         }
 
+        [Authorize]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetBookAsync([FromRoute(Name = "id")] int id)
         {
@@ -64,6 +65,7 @@ namespace Presentation.Controllers
             return Ok(book);
         }
 
+        [Authorize(Roles = "Admin, Editor")]
         [HttpPost(Name = "CreateBookAsync")]
         // Yorum satirli kisimlari calisirken kontrol eder
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -83,6 +85,7 @@ namespace Presentation.Controllers
 
         }
 
+        [Authorize(Roles = "Admin, Editor")]
         [HttpPut("{id:int}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateBookAsync([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
@@ -100,6 +103,7 @@ namespace Presentation.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteBookAsync([FromRoute(Name = "id")] int id)
         {
@@ -111,7 +115,7 @@ namespace Presentation.Controllers
         }
 
 
-        
+        [Authorize(Roles = "Admin, Editor")]
         [HttpPatch("{id:int}")]
         public async Task<IActionResult> PartiallyUpdateOneBookAsync([FromRoute(Name = "id")] int id,
             [FromBody] JsonPatchDocument<BookDtoForUpdate> bookPatch)
