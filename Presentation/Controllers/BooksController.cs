@@ -66,6 +66,15 @@ namespace Presentation.Controllers
             return Ok(book);
         }
 
+        [Authorize]
+        [HttpGet("details")]
+        public async Task<IActionResult> GetAllBooksWithDetailsAsync()
+        {
+            return Ok(await _manager
+                .BookService
+                .GetAllBooksWithDetailsAsync(false));
+        }
+
         [Authorize(Roles = "Admin, Editor")]
         [HttpPost(Name = "CreateBookAsync")]
         // Yorum satirli kisimlari calisirken kontrol eder

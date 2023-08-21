@@ -30,6 +30,9 @@ namespace WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -39,24 +42,29 @@ namespace WebAPI.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Books");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            CategoryId = 1,
                             Price = 24m,
                             Title = "Karagoz ve Hacivat"
                         },
                         new
                         {
                             Id = 2,
+                            CategoryId = 2,
                             Price = 14m,
                             Title = "Mesnevi"
                         },
                         new
                         {
                             Id = 3,
+                            CategoryId = 1,
                             Price = 42m,
                             Title = "Devlet"
                         });
@@ -202,22 +210,22 @@ namespace WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0cac0849-5c8e-40a0-81ef-6364c1aee8c2",
-                            ConcurrencyStamp = "5f44e62e-5f0d-4fc0-9578-58b14c6263c1",
+                            Id = "83163a96-d7a5-42e7-829d-7cc98417340e",
+                            ConcurrencyStamp = "0d5664bf-e1b3-4dcc-a938-5fed07871844",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "e2e19381-b16b-43da-a5e8-fd799bf223c5",
-                            ConcurrencyStamp = "84456880-0b31-4ae6-97f1-a691dae1ec5b",
+                            Id = "aa778af7-af93-4950-97ba-715f2d255caa",
+                            ConcurrencyStamp = "15b7a1ba-10d3-4f39-81dd-366e78f2dbbc",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "267aaa77-1c62-4057-8c58-f2ad76064a86",
-                            ConcurrencyStamp = "e163c3d5-8975-430c-88b7-92837c729ec1",
+                            Id = "a4362c4e-505c-4a7c-b1c4-b60bbd9596e0",
+                            ConcurrencyStamp = "ec49ba43-62d5-4030-953f-4bd69ef5a5f6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -329,6 +337,17 @@ namespace WebAPI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Models.Book", b =>
+                {
+                    b.HasOne("Entities.Models.Category", "Category")
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -378,6 +397,11 @@ namespace WebAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Models.Category", b =>
+                {
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

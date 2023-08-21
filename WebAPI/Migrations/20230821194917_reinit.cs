@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebAPI.Migrations
 {
-    public partial class CreatingIdentityTables : Migration
+    public partial class reinit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,6 +30,8 @@ namespace WebAPI.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RefreshTokenExpiryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -48,6 +50,19 @@ namespace WebAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,6 +171,62 @@ namespace WebAPI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Books",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Books", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Books_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "83163a96-d7a5-42e7-829d-7cc98417340e", "0d5664bf-e1b3-4dcc-a938-5fed07871844", "User", "USER" },
+                    { "a4362c4e-505c-4a7c-b1c4-b60bbd9596e0", "ec49ba43-62d5-4030-953f-4bd69ef5a5f6", "Admin", "ADMIN" },
+                    { "aa778af7-af93-4950-97ba-715f2d255caa", "15b7a1ba-10d3-4f39-81dd-366e78f2dbbc", "Editor", "EDITOR" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Computer Science" },
+                    { 2, "Network" },
+                    { 3, "Database Management" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Books",
+                columns: new[] { "Id", "CategoryId", "Price", "Title" },
+                values: new object[] { 1, 1, 24m, "Karagoz ve Hacivat" });
+
+            migrationBuilder.InsertData(
+                table: "Books",
+                columns: new[] { "Id", "CategoryId", "Price", "Title" },
+                values: new object[] { 2, 2, 14m, "Mesnevi" });
+
+            migrationBuilder.InsertData(
+                table: "Books",
+                columns: new[] { "Id", "CategoryId", "Price", "Title" },
+                values: new object[] { 3, 1, 42m, "Devlet" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -194,6 +265,11 @@ namespace WebAPI.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Books_CategoryId",
+                table: "Books",
+                column: "CategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -214,10 +290,16 @@ namespace WebAPI.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Books");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }

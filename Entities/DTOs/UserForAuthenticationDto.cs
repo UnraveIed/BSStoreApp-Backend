@@ -10,11 +10,11 @@ namespace Entities.DTOs
     public record UserForAuthenticationDto
     {
         [Display(Name = "Username")]
-        [Required(ErrorMessage = "{} is required")]
+        [Required(ErrorMessage = "{0} is required")]
         public string? UserName { get; init; }
 
         [Display(Name = "Password")]
-        [Required(ErrorMessage = "{} is required")]
+        [Required(ErrorMessage = "{0} is required")]
         public string? Password { get; init; }
     }
 }

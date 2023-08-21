@@ -12,8 +12,8 @@ using Repositories.EFCore;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20230806141846_AddRolesToDatabase")]
-    partial class AddRolesToDatabase
+    [Migration("20230821194917_reinit")]
+    partial class reinit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,9 @@ namespace WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -41,26 +44,65 @@ namespace WebAPI.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Books");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            CategoryId = 1,
                             Price = 24m,
                             Title = "Karagoz ve Hacivat"
                         },
                         new
                         {
                             Id = 2,
+                            CategoryId = 2,
                             Price = 14m,
                             Title = "Mesnevi"
                         },
                         new
                         {
                             Id = 3,
+                            CategoryId = 1,
                             Price = 42m,
                             Title = "Devlet"
+                        });
+                });
+
+            modelBuilder.Entity("Entities.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Computer Science"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Network"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Database Management"
                         });
                 });
 
@@ -111,6 +153,12 @@ namespace WebAPI.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RefreshTokenExpiryTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -164,22 +212,22 @@ namespace WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0efba4ca-47ec-4454-87e5-47c7e7df326c",
-                            ConcurrencyStamp = "026d55bf-56d0-4f57-8e0e-6a9f360124f3",
+                            Id = "83163a96-d7a5-42e7-829d-7cc98417340e",
+                            ConcurrencyStamp = "0d5664bf-e1b3-4dcc-a938-5fed07871844",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "cb5c6f63-561f-4fd5-a873-2f12021880e3",
-                            ConcurrencyStamp = "6f339cb8-b7d0-4124-8415-2765e5641f2c",
+                            Id = "aa778af7-af93-4950-97ba-715f2d255caa",
+                            ConcurrencyStamp = "15b7a1ba-10d3-4f39-81dd-366e78f2dbbc",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "f5145ec5-a14e-4924-b882-85fb14bdead5",
-                            ConcurrencyStamp = "505398c4-75d0-4e6c-aeb5-2079e14b244d",
+                            Id = "a4362c4e-505c-4a7c-b1c4-b60bbd9596e0",
+                            ConcurrencyStamp = "ec49ba43-62d5-4030-953f-4bd69ef5a5f6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -291,6 +339,17 @@ namespace WebAPI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Models.Book", b =>
+                {
+                    b.HasOne("Entities.Models.Category", "Category")
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -340,6 +399,11 @@ namespace WebAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Models.Category", b =>
+                {
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

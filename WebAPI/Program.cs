@@ -18,14 +18,15 @@ builder.Services.AddControllers(config =>
 {
     config.RespectBrowserAcceptHeader = true;
     config.ReturnHttpNotAcceptable = true;
-    config.CacheProfiles.Add("5mins",new CacheProfile() { Duration = 300});
+    config.CacheProfiles.Add("5mins", new CacheProfile() { Duration = 300 });
 })
     //Xml formatinda response saglandi
     .AddXmlDataContractSerializerFormatters()
     //Csv formatinda response saglandi (Extension yazildi)
     .AddCustomCsvFormatter()
-    .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
-    //.AddNewtonsoftJson();
+    .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
+    .AddNewtonsoftJson(opt =>
+    opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 
 
@@ -67,6 +68,9 @@ builder.Services.AddHttpContextAccessor();
 //builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJWT(builder.Configuration);
+
+builder.Services.RegisterRepositories();
+builder.Services.RegisterServices();
 
 var app = builder.Build();
 

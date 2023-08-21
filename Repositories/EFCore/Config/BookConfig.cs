@@ -14,9 +14,9 @@ namespace Repositories.EFCore.Config
         public void Configure(EntityTypeBuilder<Book> builder)
         {
             builder.HasData(
-                    new Book { Id = 1, Title = "Karagoz ve Hacivat", Price = 24 },
-                    new Book { Id = 2, Title = "Mesnevi", Price = 14 },
-                    new Book { Id = 3, Title = "Devlet", Price = 42 }
+                    new Book { Id = 1, CategoryId = 1, Title = "Karagoz ve Hacivat", Price = 24 },
+                    new Book { Id = 2, CategoryId = 2, Title = "Mesnevi", Price = 14 },
+                    new Book { Id = 3, CategoryId = 1, Title = "Devlet", Price = 42 }
                 );
         }
     }
